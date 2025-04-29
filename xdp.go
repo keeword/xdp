@@ -232,10 +232,10 @@ func NewSocket(Ifindex int, QueueID int, options *SocketOptions) (xsk *Socket, e
 	}
 
 	xdpUmemReg := unix.XDPUmemReg{
-		Addr:       uint64(uintptr(unsafe.Pointer(&xsk.umem[0]))),
-		Len:        uint64(len(xsk.umem)),
-		Chunk_size: uint32(options.FrameSize),
-		Headroom:   0,
+		Addr:     uint64(uintptr(unsafe.Pointer(&xsk.umem[0]))),
+		Len:      uint64(len(xsk.umem)),
+		Size:     uint32(options.FrameSize),
+		Headroom: 0,
 	}
 
 	var errno syscall.Errno
